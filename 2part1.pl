@@ -15,25 +15,29 @@ my @instructions = split /\n/, $input;
 my $x = 0;
 my $y = 0;
 
-
 #-1,1   0,1   1,1
 #-1,0   0,0   1,0
 #-1,-1  0,-1  1,-1
+
 my @code;
 
 foreach my $instruction(@instructions){
   for my $c (split //, $instruction) {
-    if($c eq 'U') { $y++; }
-    elsif($c eq 'D') { $y--; }
-    elsif($c eq 'L') { $x--; }
-    elsif($c eq 'R') { $x++; }
+
+    my $tempx = $x;
+    my $tempy = $y;
+
+    if($c eq 'U') { $tempy++; }
+    elsif($c eq 'D') { $tempy--}
+    elsif($c eq 'L') { $tempx--; }
+    elsif($c eq 'R') { $tempx++; }
     else{die;}
 
-    if($x == 2){ $x=1; }
-    elsif($x == -2){ $x=-1; }
-    elsif($y == 2){ $y=1; }
-    elsif($y == -2){ $y=-1; }
-    else{}
+    if( abs($tempx) < 2 && abs($tempy) < 2){
+      $x = $tempx;
+      $y = $tempy;
+    }
+
   }
 
   push @code, "$x,$y";
@@ -41,6 +45,6 @@ foreach my $instruction(@instructions){
 }
 
 
-print Dumper \@code;
+print join("\n", @code);
 
 #answer 97289
