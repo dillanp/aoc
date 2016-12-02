@@ -43,8 +43,10 @@ foreach my $instruction(@instructions){
     elsif($c eq 'R') { $tempx++; }
     else{die;}
 
-    isValid($tempx, $tempy);
-
+    if( abs($tempx) < 2 && abs($tempy) < 2 || abs($tempx) == 2 && $tempy == 0 || abs($tempx) == 2 && $tempy == 0){
+      $x = $tempx;
+      $y = $tempy;
+    }
   }
 
   push @code, "$x,$y";
@@ -53,13 +55,5 @@ foreach my $instruction(@instructions){
 
 print join ("\n", @code);
 
-
-sub isValid{
-  my ($tempx, $tempy) = @_;
-  if( abs($tempx) < 2 && abs($tempy) < 2 || abs($tempx) == 2 && $tempy == 0 || abs($tempx) == 2 && $tempy == 0){
-    $x = $tempx;
-    $y = $tempy;
-  }
-}
 
 # answer 9A7DC
