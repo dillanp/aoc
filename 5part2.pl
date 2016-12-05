@@ -14,7 +14,7 @@ while($#password < 7){
   if (substr ($hash, 0, 5) eq "00000"){
     my $pos = substr $hash,5,1;
     my $char = substr $hash, 6,1;
-    if ($pos =~ /[0-8]/ && ! defined $password[$pos] ){
+    if ($pos =~ /[0-7]/ && ! defined $password[$pos] ){
       $password[$pos] = $char;
     }
   }
