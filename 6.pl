@@ -14,18 +14,16 @@ foreach my $word (@words){
         $chars{$count++}{$c}++;
     }
 }
-print Dumper \%chars;
+
 my ($mostfreq, $leastfreq) = "" x 2;
 foreach my $position(sort keys \%chars){
     my @ordered = sort { $chars{$position}{$b} <=> $chars{$position}{$a} } keys $chars{$position};
-    print join "", @ordered;
-    print "\n";
     $mostfreq .= $ordered[0];
     $leastfreq .= $ordered[-1];
 
 }
-print "$mostfreq\n";
-print "$leastfreq\n";
+print "Most frequent: $mostfreq\n";
+print "Least frequent: $leastfreq\n";
 
 
 
